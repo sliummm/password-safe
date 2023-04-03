@@ -1,0 +1,18 @@
+<div class="container p-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <app-data-card *ngFor="let code of codes" [routerLink]="['/edit']" ></app-data-card>
+            </div>
+        </div>
+        <div class="row">
+            <button [routerLink]="['/new']" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                <mat-icon>library_add</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+

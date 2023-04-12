@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { HomeComponent } from './home/home.component';
 import { SafeComponent } from './safe/safe.component';
 import { LoginComponent } from './login/login.component';
@@ -19,8 +21,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { DataCardComponent } from './data-card/data-card.component';
 import { DataFormComponent } from './data-form/data-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -31,15 +34,18 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     ProfileComponent,
     DataCardComponent,
-    DataFormComponent
+    DataFormComponent,
+    SignupComponent
   ],
   imports: [
+    ReactiveFormsModule,
     RouterModule.forRoot([
      { path: 'home', component: HomeComponent },
      { path: 'safe', component: SafeComponent },
      { path: 'new', component:DataFormComponent},
      { path: 'edit', component:DataFormComponent},
      { path: 'profile', component: ProfileComponent },
+     { path: 'signup', component:SignupComponent },
      { path: 'login', component: LoginComponent },
      { path: '', redirectTo: 'home', pathMatch:'full' },
      { path: '**', redirectTo: 'home', pathMatch:'full' }
@@ -54,6 +60,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpClientModule,
     FormsModule
   ],

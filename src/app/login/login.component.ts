@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { User } from '../models/user';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,17 @@ import { User } from '../models/user';
 })
 export class LoginComponent {
 
-  @Output()
-  onLogin = new EventEmitter();
+  constructor(
+    private auth: AuthService
+    ){ }
 
-  isLogin: boolean = false;
-  currentUser:User = new User();
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(7)])
+  });
 
+  login():void{
+    console.log(this.loginForm.value.password)
+    this.auth.login({email: this.loginForm.value.email, password: this.loginForm.value.password}).subscribe();
+  }
 }

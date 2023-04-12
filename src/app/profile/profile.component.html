@@ -5,14 +5,14 @@
         <mat-card-subtitle style="font-size:0.8rem; color:grey;">[username placeholder]</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content style="margin: 10px;">
-        <form action="">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
             <div class="form-group">Email</div>
             <div class="form-group">Phone</div>
             <div class="form-group">Company</div>
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button class="btn btn-danger">Logout</button>
-        <button class="btn btn-success">Save</button>
+        <button class="btn btn-danger" (click)="onLogout()">Logout</button>
+        <button class="btn btn-success" type="submit">Save</button>
     </mat-card-actions>
 </mat-card>

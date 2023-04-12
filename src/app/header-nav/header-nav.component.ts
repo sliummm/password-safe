@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { LoginstatusService } from '../services/loginstatus.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header-nav',
@@ -15,8 +17,18 @@ export class HeaderNavComponent {
       map(result => result.matches),
       shareReplay()
     );
+  isAuthed = false;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private auth: AuthService
+  ) { }
 
-  isLogin: boolean = true
+  ngOnInit():void{
+    this.auth.isUserLoggedIn$.subscribe(
+      (isLoggedIn)=>{
+        this.isAuthed = isLoggedIn;
+      }
+    )
+  }
 }

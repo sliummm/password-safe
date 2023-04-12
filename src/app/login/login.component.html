@@ -1,1 +1,12 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="login()" >
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Enter email to login" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Enter your password" formControlName="password">
+    </mat-form-field>
+    <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">Login</button>
+    <button mat-raised-button [routerLink]="['/signup']">Sign Up</button>
+</form>

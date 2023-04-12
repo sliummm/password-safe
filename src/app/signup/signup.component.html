@@ -1,0 +1,23 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Please enter a username" formControlName="username">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Please enter your email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Please enter a password" formControlName="password">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" placeholder="Please re-enter the password" formControlName="repass">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Company</mat-label>
+        <input matInput placeholder="Please enter your company name" formControlName="company">
+    </mat-form-field>
+    <button [disabled]="!signupForm.valid" mat-raised-button type="submit">Sign up</button>
+</form>

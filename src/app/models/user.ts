@@ -1,7 +1,7 @@
-export class User{
-    public uid!: number;
-    public username!: string;
-    public password!: string;
-    public email!: string;
-    public company!: string;
+export interface User{
+    uid: number;
+    username: string;
+    password: string;
+    email: string;
+    company: string;
 }

@@ -34,6 +34,22 @@ export class AccountService {
       "account_comment":account.accountComment
     }
 
-    // return this.http.post(this.url)
+    return this.http.post(this.url, body, {'headers': this.httpOptions.headers});
+  }
+
+  putAccount(account:Account){
+    const body = {
+      "aid": account.aid,
+      "account_type": account.accountType,
+      "account_username": account.accountUserName,
+      "account_password": account.accountPassword,
+      "account_comment": account.accountComment
+    }
+
+    return this.http.put(`${this.url}/${account.aid}`,body, {'headers': this.httpOptions.headers});
+  }
+
+  deleteAccount(account:Account){
+    return this.http.delete(`${this.url}/${account.aid}`)
   }
 }

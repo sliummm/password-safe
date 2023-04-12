@@ -1,8 +1,8 @@
 mat-form-field{
     width: 95%;
-    padding-top: 15px;
+    padding-top: 20px;
 }
 button{
+    float: right;
     width: 200px;
-    margin: 20px;
 }

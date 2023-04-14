@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Account } from '../models/account';
+import { User } from '../models/user';
+import { AccountService } from '../services/account.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-safe',
@@ -7,36 +12,18 @@ import { Component } from '@angular/core';
 })
 export class SafeComponent {
 
-  codes = [
-    {
-      title:"Google",
-      userName:"test",
-      passWord:"test123"
-    },
-    {
-      title:"facebook",
-      userName:"test2",
-      passWord:"test1234"
-    },
-    {
-      title:"twiter",
-      userName:"test3",
-      passWord:"test125"
-    },
-    {
-      title:"twiter",
-      userName:"test3",
-      passWord:"test125"
-    },
-    {
-      title:"twiter",
-      userName:"test3",
-      passWord:"test125"
-    },
-    {
-      title:"twiter",
-      userName:"test3",
-      passWord:"test125"
-    },
-  ]
+  safeData$:Observable<Account[]>;
+  userId:Pick<User,"uid">
+
+  constructor(
+    private accountService: AccountService,
+    private auth: AuthService
+    ){}
+
+    ngOnInit(){
+      this.userId = {uid: this.auth.user.uid}
+      console.log(this.userId)
+      this.safeData$ = this.accountService.getAllAccount(this.userId)
+      console.log(this.safeData$);
+    }
 }

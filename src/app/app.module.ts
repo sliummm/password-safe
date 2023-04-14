@@ -43,7 +43,7 @@ import { SignupComponent } from './signup/signup.component';
      { path: 'home', component: HomeComponent },
      { path: 'safe', component: SafeComponent },
      { path: 'new', component:DataFormComponent},
-     { path: 'edit', component:DataFormComponent},
+     { path: 'edit/:aid', component:DataFormComponent},
      { path: 'profile', component: ProfileComponent },
      { path: 'signup', component:SignupComponent },
      { path: 'login', component: LoginComponent },

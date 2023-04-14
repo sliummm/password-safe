@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private url = "http://localhost:4242/auth";
   isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
-  uid!: Pick<User, 'uid'>;
+  user:User;
 
 
   httpOptions:{
@@ -33,19 +33,19 @@ export class AuthService {
     )
   }
 
-  login({email,password}:Pick<User,"email" | "password">): Observable<{ token: string; uid: Pick<User, "uid">; }> {
+  login({email,password}:Pick<User,"email" | "password">): Observable<{ token: string; user: User; }> {
     console.log(email+password)
     return this.http.post(`${this.url}/login`, { email, password }, this.httpOptions)
     .pipe(
       first(),
       tap(
         (tokenObject:any)=>{
-          this.uid=tokenObject.uid;
+          this.user = tokenObject.user
+          console.log(tokenObject)
+          console.log(this.user);
           localStorage.setItem('token', tokenObject.token);
           this.isUserLoggedIn$.next(true);
           this.router.navigate(['/']);
-          console.log(email);
-          console.log(password);
         }
       ),
       catchError(

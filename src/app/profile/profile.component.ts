@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginstatusService } from '../services/loginstatus.service';
+import { User } from '../models/user';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,18 +17,20 @@ export class ProfileComponent {
     company: new FormControl()
   })
 
+  currentUser:User;
+
   constructor(
-    private userLoginStatus: LoginstatusService,
+    private auth: AuthService,
     private router: Router
   ){}
 
-  onSubmit(){
-
+  ngOnInit(){
+    this.currentUser = this.auth.user
+    console.log(this.currentUser)
   }
 
   onLogout(){
-    this.userLoginStatus.logUserOut();
+    this.auth.isUserLoggedIn$.next(false)
     this.router.navigate(['/'])
-    console.log(this.userLoginStatus)
   }
 }

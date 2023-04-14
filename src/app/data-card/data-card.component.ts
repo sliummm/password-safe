@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Account } from '../models/account';
 
 @Component({
   selector: 'app-data-card',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./data-card.component.css']
 })
 export class DataCardComponent {
-  
+  @Input() code:Account;
+  account:any
+
+  ngOnInit(){
+    this.account = this.code;
+    console.log(this.account)
+  }
+
+  onClickCard(){
+    
+  }
 }

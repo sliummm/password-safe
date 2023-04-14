@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md">
-                <app-data-card *ngFor="let code of codes" [routerLink]="['/edit']" ></app-data-card>
+                <app-data-card *ngFor="let data of safeData$ |async" [code]="data"></app-data-card>
             </div>
         </div>
         <div class="row">

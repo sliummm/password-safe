@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './home/home.component';
 import { SafeComponent } from './safe/safe.component';
 import { LoginComponent } from './login/login.component';
@@ -62,6 +64,8 @@ import { SignupComponent } from './signup/signup.component';
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatSnackBarModule,
     HttpClientModule,
     FormsModule
   ],

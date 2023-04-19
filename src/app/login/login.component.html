@@ -7,6 +7,10 @@
         <mat-label>Password</mat-label>
         <input matInput type="password" placeholder="Enter your password" formControlName="password">
     </mat-form-field>
+    <mat-error
+    *ngIf="loginFail">
+    Login Failed Please check emaill and/or password
+    </mat-error>
     <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit">Login</button>
     <button mat-raised-button [routerLink]="['/signup']">Sign Up</button>
 </form>

@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { AuthService } from './auth.service';
 import { catchError, Observable } from 'rxjs';
 import { ErrorhandleService } from './errorhandle.service';
+import { __values } from 'tslib';
 
 
 @Injectable({
@@ -32,7 +33,8 @@ export class AccountService {
   }
 
   getAccountById(aid:Pick<Account,"aid">):Observable<Account>{
-    return this.http.get<Account>(`${this.url}/useraccount/${aid}`)
+    console.log(Object.values(aid))
+    return this.http.get<Account>(`${this.url}/useraccount/${Object.values(aid)}`,{responseType: "json"})
     .pipe(
       catchError(this.errorhandler.handleError<Account>("fetchById"))
     )
@@ -41,45 +43,37 @@ export class AccountService {
   postNewAccount(
     formData: Partial<Account>,
     userid: Pick<User, "uid">
-  ):Observable<any>{
-    const body = {
-      "userid":userid,
-      "account_type":formData.accountType,
-      "account_username":formData.accountUserName,
-      "account_password":formData.accountPassword,
-      "account_comment":formData.accountComment
-    }
+  ):Observable<Account>{
+    console.log(this.url)
 
-    return this.http.post(this.url, {
-      userid:userid,
+    return this.http.post<Account>(this.url, {
+      userid:userid.uid,
       account_type:formData.accountType,
       account_username:formData.accountUserName,
       account_password:formData.accountPassword,
       account_comment:formData.accountComment
-    }, {'headers': this.httpOptions.headers})
+    }, this.httpOptions)
     .pipe(
       catchError(this.errorhandler.handleError<Account>("postAccount"))
     );
   }
 
-  putAccount(account:Account):Observable<any>{
+  putAccount(account:Partial<Account>):Observable<any>{
 
-    const body = {
-      "aid": account.aid,
-      "account_type": account.accountType,
-      "account_username": account.accountUserName,
-      "account_password": account.accountPassword,
-      "account_comment": account.accountComment
-    }
-
-    return this.http.put(`${this.url}/${account.aid}`,body, {'headers': this.httpOptions.headers})
+    return this.http.put(`${this.url}/${account.aid}`,{
+      aid: account.aid,
+      account_type: account.accountType,
+      account_username: account.accountUserName,
+      account_password: account.accountPassword,
+      account_comment: account.accountComment
+    }, {'headers': this.httpOptions.headers})
     .pipe(
       catchError(this.errorhandler.handleError<Account>("putAccount"))
     );
   }
 
   deleteAccount(aid:Pick<Account, "aid">):Observable<{}>{
-    return this.http.delete(`${this.url}/${aid}`)
+    return this.http.delete(`${this.url}/${aid.aid}`)
     .pipe(
       catchError(this.errorhandler.handleError<Account>("deleteAccount"))
     )

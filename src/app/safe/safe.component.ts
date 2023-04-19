@@ -24,6 +24,5 @@ export class SafeComponent {
       this.userId = {uid: this.auth.user.uid}
       console.log(this.userId)
       this.safeData$ = this.accountService.getAllAccount(this.userId)
-      console.log(this.safeData$);
     }
 }

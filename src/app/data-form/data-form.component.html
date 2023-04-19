@@ -1,8 +1,29 @@
-<form action="">
-    <div class="form-group">[UserName Display]</div>
-    <div class="form-group">Type Selection</div>
-    <div class="form-group">Username input</div>
-    <div class="form-group">password input</div>
-    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-    <button type="button" class="btn btn-primary">Update/Add</button>
+<form [formGroup]="accountForm" action="" novalidate>
+    <mat-form-field>
+        <mat-label>Account Type</mat-label>
+        <mat-select formControlName="type" [compareWith]="compare">
+            <mat-option *ngFor="let type of types" [value]="type.value">{{type.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="this.accountForm.value.type == 'other'">
+        <mat-label>Other Account</mat-label>
+        <input matInput placeholder="Please specify the account type" type="text" formControlName="othertype">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Please enter the username used in this account" type="text" formControlName="username">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Please enter the password used in this account" [type]="show ? 'password': 'text'" formControlName="password">
+        <button (click)="onPassToggle()" >show/hide</button>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Comment</mat-label>
+        <input matInput type="text" placeholder="Please enter a comment for this account" formControlName="comment">
+    </mat-form-field>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" *ngIf="this.isUpdate" (click)="onUpdate()">Update</button>
+    <button type="button" class="btn btn-primary" *ngIf="!this.isUpdate" (click)="onAdd()">Add</button>
+    <button type="button" class="btn btn-danger" *ngIf="this.isUpdate" (click)="onDelete()">Delete</button>
 </form>

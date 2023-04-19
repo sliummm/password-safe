@@ -2,18 +2,42 @@
     <mat-form-field>
         <mat-label>Username</mat-label>
         <input matInput placeholder="Please enter a username" formControlName="username">
+        <mat-error
+        *ngIf="signupForm.controls['username'].hasError('required')">
+        Username is required
+        </mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Email</mat-label>
         <input matInput placeholder="Please enter your email" formControlName="email">
+        <mat-error
+        *ngIf="signupForm.controls['email'].hasError('required')">
+        Email is required
+        </mat-error>
+        <mat-error
+        *ngIf="signupForm.controls['email'].hasError('email')">
+        Email not valid
+        </mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Password</mat-label>
         <input matInput type="password" placeholder="Please enter a password" formControlName="password">
+        <mat-error
+        *ngIf="signupForm.controls['password'].hasError('required')">
+        Password is required
+        </mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Confirm Password</mat-label>
         <input matInput type="password" placeholder="Please re-enter the password" formControlName="repass">
+            <mat-error
+            *ngIf="signupForm.controls['repass'].hasError('required')">
+            Confirm Password is required
+            </mat-error>
+            <mat-error
+            *ngIf="signupForm.controls['repass'].errors?.passwordMismatch">
+            Passwords must matched
+            </mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Company</mat-label>

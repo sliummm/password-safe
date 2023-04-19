@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  loginFail:boolean;
 
   constructor(
     private auth: AuthService
@@ -19,7 +20,10 @@ export class LoginComponent {
   });
 
   login():void{
-    console.log(this.loginForm.value.password)
-    this.auth.login({email: this.loginForm.value.email, password: this.loginForm.value.password}).subscribe();
+    this.auth.login({email: this.loginForm.value.email, password: this.loginForm.value.password}).subscribe(response=>{
+      if(!response){
+        this.loginFail=true
+      }
+    });
   }
 }

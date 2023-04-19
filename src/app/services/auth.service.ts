@@ -34,16 +34,13 @@ export class AuthService {
   }
 
   login({email,password}:Pick<User,"email" | "password">): Observable<{ token: string; user: User; }> {
-    console.log(email+password)
     return this.http.post(`${this.url}/login`, { email, password }, this.httpOptions)
     .pipe(
       first(),
       tap(
-        (tokenObject:any)=>{
-          this.user = tokenObject.user
-          console.log(tokenObject)
-          console.log(this.user);
-          localStorage.setItem('token', tokenObject.token);
+        (object:any)=>{
+          this.user = object.user
+          localStorage.setItem('token', object.token);
           this.isUserLoggedIn$.next(true);
           this.router.navigate(['/']);
         }

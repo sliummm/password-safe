@@ -8,11 +8,10 @@ import { Account } from '../models/account';
 })
 export class DataCardComponent {
   @Input() code:Account;
-  account:any
+  account:any;
 
   ngOnInit(){
     this.account = this.code;
-    console.log(this.account)
   }
 
   onClickCard(){

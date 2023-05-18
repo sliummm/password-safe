@@ -4,6 +4,8 @@
 
 .editorconfig
 
+/.vscode/*
+
 /node_modules
 
 /e2e

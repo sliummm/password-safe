@@ -2,10 +2,10 @@
     <mat-card-header>
         <div mat-card-avatar class="example-header-image" [ngSwitch]="this.account.account_type">
             <img *ngSwitchCase="'google'" src="assets/logo/google.png" alt="" style="width: 40px; height: 40px;">
-            <img *ngSwitchCase="'discord'" src="assets/logo/discord.png" alt="" style="width: 40px; height: 40px;">
-            <img *ngSwitchCase="'twitter'" src="assets/logo/twitter.png" alt="" style="width: 40px; height: 40px;">
-            <img *ngSwitchCase="'facebook'" src="assets/logo/facebook.jpg" alt="" style="width: 40px; height: 40px;">
-            <img *ngSwitchDefault src="assets/logo/default.png" alt="" style="width: 40px; height: 40px;">
+            <img *ngSwitchCase="'discord'" src="/assets/logo/discord.png" alt="" style="width: 40px; height: 40px;">
+            <img *ngSwitchCase="'twitter'" src="/assets/logo/twitter.png" alt="" style="width: 40px; height: 40px;">
+            <img *ngSwitchCase="'facebook'" src="/assets/logo/facebook.jpg" alt="" style="width: 40px; height: 40px;">
+            <img *ngSwitchDefault src="/assets/logo/default.png" alt="" style="width: 40px; height: 40px;">
         </div>
         <mat-card-title style="font-size:2rem; font-weight: bolder;">{{this.account.account_type}}</mat-card-title>
     </mat-card-header>
